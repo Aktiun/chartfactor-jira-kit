@@ -1,20 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-#
-# Provide the following information to create your local airbyte JIRA source, Airbyte PG destination, and Airbyte destination objects
-#
-
-# The Domain for your Jira account, e.g. your-domain.atlassian.net, your-domain.jira.com, jira.your-domain.com
-JIRA_DOMAIN=aktiun.atlassian.net
-# To obtain a JIRA API token, go to https://id.atlassian.com/manage-profile/security/api-tokens and sign in with the Atlassian account you use for Jira Cloud
-JIRA_API_TOKEN=ATATT3xFfGF0knL8dqBbPF8Cj47MsuoZvevVeOA51EndoPOmPNX9B7QeQ1d9swGasRaSIoyBtc6nVh-KdUagv1w8Cx-g3CXNcokJ9sNsEnoSoqFToCpGuERxPION7SMf-AKyodrx6UmMg8arO-htgOThYpA4v-UEpmJfGcxVDJc0UiUaz9GMHk0=10679145
-# The user email for your Jira account which you used to generate the API token
-JIRA_EMAIL=jorge@aktiun.com
-# Double-quote delimited and comma-separated list of project keys, e.g. "PROJ1,PROJ2,PROJ3"
-JIRA_PROJECTS="FASBUP"
-# Start date in ISO 8601 format
-JIRA_START_DATE=2025-01-01T00:00:00Z
+# ─── Load environment variables from .env if present ───
+if [[ -f .env ]]; then
+  # export every var in .env
+  set -o allexport
+  source .env
+  set +o allexport
+fi
+# ─── sanity checks ───
+: "${JIRA_DOMAIN:?Need to set JIRA_DOMAIN in .env}"
+: "${JIRA_API_TOKEN:?Need to set JIRA_API_TOKEN in .env}"
+: "${JIRA_EMAIL:?Need to set JIRA_EMAIL in .env}"
+: "${JIRA_PROJECTS:?Need to set JIRA_PROJECTS in .env}"
+: "${JIRA_START_DATE:?Need to set JIRA_START_DATE in .env}"
 
 # Postgres connection constants. Do not change if using the provider docker-compose.yml to run Postgres
 PG_HOST=host.docker.internal
