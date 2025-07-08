@@ -1,0 +1,25 @@
+services:
+  api:
+    image: jorgealarcon/postgres-rest:latest
+    ports:
+      - "3000:3000"
+    environment:
+      PGHOST: db
+      PGPORT: 5432
+      PGDATABASE: postgres
+      PGUSER: postgres
+      PGPASSWORD: passpg
+    depends_on:
+      - db
+
+  db:
+    image: postgis/postgis:15-3.5
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: passpg
+      POSTGRES_DB: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./postgres.db:/var/lib/postgresql/data
