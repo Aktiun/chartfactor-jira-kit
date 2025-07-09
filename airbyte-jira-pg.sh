@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# ─── Load environment variables from .env if present ───
+# Load environment variables from .env if present ───
 if [[ -f .env ]]; then
   # export every var in .env
   set -o allexport
   source .env
   set +o allexport
 fi
-# ─── sanity checks ───
+
+# Sanity checks for input variables
 : "${JIRA_DOMAIN:?Need to set JIRA_DOMAIN in .env}"
 : "${JIRA_API_TOKEN:?Need to set JIRA_API_TOKEN in .env}"
 : "${JIRA_EMAIL:?Need to set JIRA_EMAIL in .env}"
@@ -108,7 +109,10 @@ echo "POSTGRES_DEF_ID is: $postgresDefId"
 projects_json=$(printf '"%s",' $(echo "$JIRA_PROJECTS" | sed 's/,/","/g'))
 projects_json="[${projects_json%,}]"
 
+#
 # Creating Jira Source
+#
+
 response=$(
   curl -s -X POST http://localhost:8000/api/v1/sources/create \
     -H "Content-Type: application/json" \
@@ -220,30 +224,87 @@ EOF
 connectionId=$(jq -r '.connectionId' <<<"$create_resp")
 echo "✅ Created connection with ID: $connectionId"
 
+# NOTE: Commented out, using custom SQL in chartfactor instead
 # Create issue_worklogs_view
-# TODO: creation fails ERROR:  relation "issue_worklogs" does not exist
-# LINE 17: FROM issue_worklogs AS worklogs
-#               ^
-docker compose exec -T db psql -U "$PG_USER" -d "$PG_DB" <<EOF
-CREATE OR REPLACE VIEW ${PG_SCHEMA}.issue_worklogs_view AS
-SELECT
-  worklogs.author->>'active'                               AS author_active,
-  worklogs.author->'avatarUrls'->>'32x32'                  AS author_avatar,
-  worklogs.author->>'displayName'                          AS author_name,
-  worklogs.author->>'emailAddress'                         AS email_address,
-  worklogs.comment
-          ->'content'->0
-          ->'content'->0
-          ->>'text'                                     AS comment,
-  'https://${JIRA_DOMAIN}/issues/' || issues.key    AS issue_url,
-  worklogs.started,
-  worklogs.created,
-  worklogs.updated,
-  worklogs."timeSpent"                                     AS time_spent,
-  worklogs."timeSpentSeconds"  / 3600.0                   AS time_spent_hours
-FROM issue_worklogs AS worklogs
-LEFT JOIN issues      AS issues
-  ON worklogs."issueId" = issues.id;
-EOF
+# docker compose exec -T db psql -U "$PG_USER" -d "$PG_DB" <<EOF
+# CREATE OR REPLACE VIEW ${PG_SCHEMA}.issue_worklogs_view AS
+# SELECT
+#  worklogs.author->>'active'                               AS author_active,
+#  worklogs.author->'avatarUrls'->>'32x32'                  AS author_avatar,
+#  worklogs.author->>'displayName'                          AS author_name,
+#  worklogs.author->>'emailAddress'                         AS email_address,
+#  worklogs.comment
+#          ->'content'->0
+#          ->'content'->0
+#          ->>'text'                                     AS comment,
+#  'https://${JIRA_DOMAIN}/issues/' || issues.key    AS issue_url,
+#  worklogs.started,
+#  worklogs.created,
+#  worklogs.updated,
+#  worklogs."timeSpent"                                     AS time_spent,
+#  worklogs."timeSpentSeconds"  / 3600.0                   AS time_spent_hours
+# FROM issue_worklogs AS worklogs
+# LEFT JOIN issues      AS issues
+#  ON worklogs."issueId" = issues.id;
+# EOF
 
-echo "✅ View issue_worklogs_view created (or replaced) in $PG_DB.$PG_SCHEMA"
+# echo "✅ View issue_worklogs_view created (or replaced) in $PG_DB.$PG_SCHEMA"
+
+#
+# Updating custom SQL in CFS file with the JIRA_DOMAIN to be rendered as part of clickable URLs in tables
+#
+
+# Paths
+infile="JIRA Worklogs Analysis - PG.cfs"
+outfile="JIRA Worklogs Analysis.cfs"
+
+# Sanity check
+if [[ ! -f "$infile" ]]; then
+  echo "Error: input file '$infile' not found" >&2
+  exit 1
+fi
+
+# Perform the replacement and write to the new file
+sed "s|\${JIRA_DOMAIN}|${JIRA_DOMAIN}|g" "$infile" > "$outfile"
+
+echo "✅ Created '$outfile' with JIRA_DOMAIN=${JIRA_DOMAIN}"
+
+#
+# Waiting for the source tables to appear
+#
+
+echo "⏳ Waiting for issue_worklogs and issues tables…"
+
+# maximum retries & sleep interval
+max_retries=96   # e.g. 96×5s = 8 minutes max wait
+interval=5       # seconds
+
+for ((i=1; i<=max_retries; i++)); do
+  exists_worklogs=$(
+    docker compose exec -T db psql -U "$PG_USER" -d "$PG_DB" -tAc \
+      "SELECT 1 FROM information_schema.tables 
+         WHERE table_schema = '$PG_SCHEMA'
+           AND table_name   = 'issue_worklogs';"
+  )
+
+  exists_issues=$(
+    docker compose exec -T db psql -U "$PG_USER" -d "$PG_DB" -tAc \
+      "SELECT 1 FROM information_schema.tables 
+         WHERE table_schema = '$PG_SCHEMA'
+           AND table_name   = 'issues';"
+  )
+
+  if [[ "$exists_worklogs" == "1" && "$exists_issues" == "1" ]]; then
+    echo "✅ Source tables are ready."
+    break
+  fi
+
+  echo "…not ready yet (attempt $i/$max_retries), sleeping ${interval}s"
+  sleep $interval
+
+  if (( i == max_retries )); then
+    echo "❌ timed out waiting for tables" >&2
+    exit 1
+  fi
+done
+
