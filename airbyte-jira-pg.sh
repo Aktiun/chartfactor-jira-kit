@@ -183,13 +183,13 @@ sync_catalog=$(
           .stream.name == "users"
         )
       )
-    # 2) for each, recursively delete every "description" field in its JSON schema
+    # 2) for each, strip all descriptions and enable the stream
     | map(
-        .stream.jsonSchema |=
-          ( walk(
-              if type == "object" then del(.description) else . end
-            )
-          )
+        # recursively remove any "description" field
+        .stream.jsonSchema |= walk(if type == "object" then del(.description) else . end) |
+        # mark this stream as selected and suggested
+        .config.selected  = true |
+        .config.suggested = true
       )
     # 3) wrap back into { streams: [...] }
     | { streams: . }
