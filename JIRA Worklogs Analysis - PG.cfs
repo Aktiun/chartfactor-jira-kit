@@ -1,7 +1,7 @@
 {
     "id": "b8e3519a-6f51-405f-9de5-545dc9dc1713",
-    "name": "JIRA Worklogs Analysis - PG",
-    "description": "",
+    "name": "JIRA Worklogs Analysis",
+    "description": "Visualizes the time your team is logging into their JIRA tickets without having to spend hundreds of dollars per month in Tempo licensing fees.",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
