@@ -25,9 +25,15 @@ This repository allows you to analyze JIRA tickets and worklogs using ChartFacto
 
     Please refer to Airbyte's [Quickstart documentation](https://docs.airbyte.com/platform/using-airbyte/getting-started/oss-quickstart) to install abctl if you are using Linux or Windows.
 
-2. Copy the `.env.example` file to `.env` and fill in the JIRA parameters
+2. Pull this repo using the command below.
 
-3. Execute the command below in your terminal window. Please make sure ports 8000 and 5433 are available in your local computer. 
+    ```commandline
+    git clone https://github.com/Aktiun/chartfactor-jira-kit.git
+    ```
+
+3. Copy the `.env.example` file to `.env` and fill in the JIRA parameters
+
+4. Execute the command below in your terminal window. Please make sure ports 8000 and 5433 are available in your local computer. 
 
     ```commandline
     airbyte-jira-pg.sh
@@ -40,7 +46,7 @@ This repository allows you to analyze JIRA tickets and worklogs using ChartFacto
     * Prepares the "JIRA Worklogs Analysis.cfs" application file that you can later use in ChartFactor Studio. This file contains the visualization configurations.
     * Waits for issue_worklogs and issues tables to appear in the data warehouse
 
-4. Open [ChartFactor Studio](https://chartfactor.com/studio) and use the "Import" function located in the top-right corner of the Studio home page, to import the `JIRA Worklogs Analysis.cfs` file.
+5. Open [ChartFactor Studio](https://chartfactor.com/studio) and use the "Import" function located in the top-right corner of the Studio home page, to import the `JIRA Worklogs Analysis.cfs` file.
 
 You should now be able to open your Studio application.  
 
