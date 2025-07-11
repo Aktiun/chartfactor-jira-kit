@@ -2,6 +2,8 @@
 
 If you would like to visualize the time your team is logging into their JIRA tickets without having to spend hundreds of dollars per month in Tempo licensing fees, then you should read on.
 
+![JIRA Worklogs App](https://raw.githubusercontent.com/Aktiun/chartfactor-jira-kit/main/JIRA%20App.gif)
+
 This repository allows you to analyze JIRA tickets and worklogs using ChartFactor. Please note that this connector uses either Postgres or the BigQuery emulator as a data warehouse for a lower onboarding barrier.  Consider using these data engines as a destination for small data volumes (e.g. less than 10GB) or for testing purposes. For larger data volumes and for full governance, we recommend using a data warehouse such as Google BigQuery.
 
 # Steps
