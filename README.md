@@ -4,7 +4,7 @@ If you would like to visualize the time your team is logging into their JIRA tic
 
 ![JIRA Worklogs App](https://github.com/Aktiun/chartfactor-jira-kit/blob/main/JIRA%20App.gif)
 
-This repository allows you to analyze JIRA tickets and worklogs using ChartFactor. Please note that this connector uses either Postgres or the BigQuery emulator as a data warehouse for a lower onboarding barrier.  Consider using these data engines as a destination for small data volumes (e.g. less than 10GB) or for testing purposes. For larger data volumes and for full governance, we recommend using a data warehouse such as Google BigQuery.
+This repository allows you to analyze JIRA tickets and worklogs using ChartFactor. Please note that this connector uses either Postgres as a data warehouse for a lower onboarding barrier.  Consider using this data engine as a destination for small data volumes (e.g. less than 10GB) or for testing purposes. For larger data volumes and for full governance, we recommend using a data warehouse such as Google BigQuery.
 
 # Steps
 
@@ -41,7 +41,7 @@ This repository allows you to analyze JIRA tickets and worklogs using ChartFacto
     airbyte-jira-pg.sh
     ```
 
-    The command performs the following actions:
+    This command performs the following actions:
 
     * Deploys Airbyte locally.  Airbyte is an open-source ELT platform that helps teams move data from various sources into data warehouses.
     * Creates Airbyte source, destination, and connection configurations to populate the data warehouse (e.g. Postgres or BigQuery Emulator) with JIRA issues and worklogs.

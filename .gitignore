@@ -4,3 +4,4 @@ venv/
 postgres.db
 bigquery.db
 JIRA Worklogs Analysis.cfs
+bigquery-private-key*.json

@@ -2,7 +2,7 @@ services:
   api:
     image: jorgealarcon/postgres-rest:latest
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       PGHOST: db
       PGPORT: 5432
