@@ -21,22 +21,22 @@ abctl is Airbyte's command-line tool for deploying and managing Airbyte. Airbyte
 
 If you are using a Mac, use Homebrew to install Airbyte's abctl.
 
-    a. Install Homebrew, if you haven't already.
+a. Install Homebrew, if you haven't already.
 
-    b. Run the following commands after you install Homebrew.
+b. Run the following commands after you install Homebrew.
 
-    ```commandline
-    brew tap airbytehq/tap
-    brew install abctl
-    ```
+```commandline
+brew tap airbytehq/tap
+brew install abctl
+```
 
-    c. Keep abctl up to date with Homebrew, too.
+c. Keep abctl up to date with Homebrew, too.
 
-    ```commandline
-    brew upgrade abctl
-    ```
+```commandline
+brew upgrade abctl
+```
 
-    Please refer to Airbyte's [Quickstart documentation - Install abctl](https://docs.airbyte.com/platform/using-airbyte/getting-started/oss-quickstart#part-2-install-abctl) to install abctl if you are using Linux or Windows.
+Please refer to Airbyte's [Quickstart documentation - Install abctl](https://docs.airbyte.com/platform/using-airbyte/getting-started/oss-quickstart#part-2-install-abctl) to install abctl if you are using Linux or Windows.
 
 ## 2. Run the connection setup script - Postgres
 
@@ -49,20 +49,20 @@ This script performs the following actions:
 
 To run the script, follow the steps below:
 
-    a. Pull the [chartfactor-jira-kit](https://github.com/Aktiun/chartfactor-jira-kit.git) repo using the command below.
+a. Pull the [chartfactor-jira-kit](https://github.com/Aktiun/chartfactor-jira-kit.git) repo using the command below.
 
-    ```commandline
-    git clone https://github.com/Aktiun/chartfactor-jira-kit.git
-    ```
-    b. Nagivate to the folder where the project was cloned.
+```commandline
+git clone https://github.com/Aktiun/chartfactor-jira-kit.git
+```
+b. Nagivate to the folder where the project was cloned.
 
-    c. Copy the `.env.example` file to `.env` and fill in the JIRA variables. No need to fill-in the BigQuery variables.
+c. Copy the `.env.example` file to `.env` and fill in the JIRA variables. No need to fill-in the BigQuery variables.
 
-    d. Execute the command below in your terminal window. Please make sure ports 8000 and 5433 are available in your local computer. 
+d. Execute the command below in your terminal window. Please make sure ports 8000 and 5433 are available in your local computer. 
 
-    ```commandline
-    airbyte-jira-postgres.sh
-    ```
+```commandline
+airbyte-jira-postgres.sh
+```
 
 Note that the Airbyte installation itself may take up to 30 minutes depending on your internet connection. When it completes, your Airbyte instance opens in your web browser at http://localhost:8000. To obtain Airbyte's default credentials and set up your own password, follow these [instructions](https://docs.airbyte.com/platform/using-airbyte/getting-started/oss-quickstart#part-4-set-up-authentication).
 
@@ -92,13 +92,13 @@ Use BigQuery when you need governance and for larger data volumes. To set up the
 
 Follow the steps below to set up BigQuery as the data warehouse for Jira data:
 
-    a. Nagivate to the folder where the [chartfactor-jira-kit](https://github.com/Aktiun/chartfactor-jira-kit.git) repo was cloned as described in previous sections.
-    a. Update the `.env` file to provide the BigQuery variables. The BigQuery variable names start with "BQ".
-    b. Execute the command below in your terminal window. 
+a. Nagivate to the folder where the [chartfactor-jira-kit](https://github.com/Aktiun/chartfactor-jira-kit.git) repo was cloned as described in previous sections.
+a. Update the `.env` file to provide the BigQuery variables. The BigQuery variable names start with "BQ".
+b. Execute the command below in your terminal window. 
 
-    ```commandline
-    airbyte-jira-bigquery.sh
-    ```
+```commandline
+airbyte-jira-bigquery.sh
+```
     
 After the script completes, open [ChartFactor Studio](https://chartfactor.com/studio) and use the "Import" function located in the top-right corner of the Studio home page, to import the `JIRA Worklogs Analysis - BQ.cfs` file.
 
@@ -128,9 +128,9 @@ If you would like to remove all Postgres persisted data, run the commands below.
 
 ```commandline
 docker-compose down -v
-``
+```
 
-```commandline`
+```commandline
 rm -rf ./postgres.db
 ```
 
