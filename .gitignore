@@ -3,5 +3,5 @@ venv/
 .DS_Store
 postgres.db
 bigquery.db
-JIRA Worklogs Analysis.cfs
+JIRA Worklogs Analysis - *.cfs
 bigquery-private-key*.json

@@ -229,8 +229,8 @@ echo "✅ Created connection with ID: $connectionId"
 #
 
 # Paths
-infile="JIRA Worklogs Analysis - PG.cfs"
-outfile="JIRA Worklogs Analysis.cfs"
+infile="JIRA Worklogs Analysis Template - PG.cfs"
+outfile="JIRA Worklogs Analysis - PG.cfs"
 
 # Sanity check
 if [[ ! -f "$infile" ]]; then

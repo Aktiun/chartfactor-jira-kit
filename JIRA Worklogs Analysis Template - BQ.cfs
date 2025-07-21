@@ -1,7 +1,7 @@
 {
     "id": "52791ce3-bfce-4b65-811a-f69d3b18dbb8",
     "name": "JIRA Worklogs Analysis - BQ",
-    "description": "",
+    "description": "Visualizes the time your team is logging into their JIRA tickets without having to spend hundreds of dollars per month in Tempo licensing fees.",
     "state": "home",
     "readOnly": false,
     "hasBorder": true,
@@ -23,7 +23,7 @@
             "source": {
                 "name": "issue_worklogs_view",
                 "provider": {
-                    "name": "Jira",
+                    "name": "BigQuery Jira",
                     "type": "google-bigquery"
                 }
             },
@@ -33,7 +33,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Jira\");",
+                "let provider = cf.provider(\"BigQuery Jira\");",
                 "let source = provider.source(\"issue_worklogs_view\");",
                 "// Declare your fields (do not remove this comment line)",
                 "const fields = [",
@@ -146,7 +146,7 @@
             "source": {
                 "name": "issue_worklogs_view",
                 "provider": {
-                    "name": "Jira",
+                    "name": "BigQuery Jira",
                     "type": "google-bigquery"
                 }
             },
@@ -156,7 +156,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Jira\");",
+                "let provider = cf.provider(\"BigQuery Jira\");",
                 "let source = provider.source(\"issue_worklogs_view\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"time_spent_hours\", \"sum\").hideFunction();",
@@ -234,7 +234,7 @@
             "source": {
                 "name": "issue_worklogs_view",
                 "provider": {
-                    "name": "Jira",
+                    "name": "BigQuery Jira",
                     "type": "google-bigquery"
                 }
             },
@@ -244,7 +244,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Jira\");",
+                "let provider = cf.provider(\"BigQuery Jira\");",
                 "let source = provider.source(\"issue_worklogs_view\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"time_spent_hours\", \"sum\").hideFunction();",
@@ -315,7 +315,7 @@
             "source": {
                 "name": "issue_worklogs_view",
                 "provider": {
-                    "name": "Jira",
+                    "name": "BigQuery Jira",
                     "type": "google-bigquery"
                 }
             },
@@ -325,7 +325,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Jira\");",
+                "let provider = cf.provider(\"BigQuery Jira\");",
                 "let source = provider.source(\"issue_worklogs_view\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"time_spent_hours\", \"sum\").hideFunction();",
@@ -429,7 +429,7 @@
     },
     "hideIM": false,
     "metadata": {
-        "Jira": [
+        "BigQuery Jira": [
             "let _META_ = {",
             "    \"issue_worklogs_view\": {",
             "        \"tz\": \"local\",",
@@ -474,7 +474,7 @@
         ]
     },
     "customQueries": {
-        "Jira": [
+        "BigQuery Jira": [
             {
                 "name": "issue_worklogs_view",
                 "query": "SELECT \n    JSON_VALUE(author, \"$.active\") AS author_active,\n    REPLACE(JSON_VALUE(worklogs.author, \"$.avatarUrls.32x32\"), '\"','') AS author_avatar, \n    REPLACE(JSON_VALUE(worklogs.author, \"$.displayName\"), '\"', '') AS author_name, \n    REPLACE(JSON_VALUE(worklogs.author, \"$.emailAddress\"), '\"', '') AS email_address,\n    REPLACE(JSON_VALUE(worklogs.comment, \"$.content[0].content[0].text\"), '\"', '') AS comment,\n    CONCAT(\"https://${JIRA_DOMAIN}/issues/\", issues.key) AS issue_url,\n    worklogs.started,\n    worklogs.created, \n    worklogs.updated, \n    worklogs.timeSpent, \n    timeSpentSeconds / 3600 AS time_spent_hours\nFROM `${BQ_PROJECT_ID}.${BQ_DATASET_ID}.issue_worklogs` AS worklogs\nLEFT JOIN `${BQ_PROJECT_ID}.${BQ_DATASET_ID}.issues` AS issues\n  ON worklogs.issueId = issues.id",
@@ -484,7 +484,7 @@
     }
 }||||[
     {
-        "name": "Jira",
+        "name": "BigQuery Jira",
         "clientId": "268751109809-vvk3e2a2cr3o107g747rn9rjb5cv1s6q.apps.googleusercontent.com",
         "active": true,
         "provider": "google-bigquery",

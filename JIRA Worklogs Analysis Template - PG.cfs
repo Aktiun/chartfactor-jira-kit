@@ -1,6 +1,6 @@
 {
     "id": "b8e3519a-6f51-405f-9de5-545dc9dc1713",
-    "name": "JIRA Worklogs Analysis",
+    "name": "JIRA Worklogs Analysis - PG",
     "description": "Visualizes the time your team is logging into their JIRA tickets without having to spend hundreds of dollars per month in Tempo licensing fees.",
     "state": "home",
     "readOnly": false,
@@ -23,7 +23,7 @@
             "source": {
                 "name": "issue_worklogs_view",
                 "provider": {
-                    "name": "Jira",
+                    "name": "Postgres Jira",
                     "type": "redshift"
                 }
             },
@@ -33,7 +33,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Jira\");",
+                "let provider = cf.provider(\"Postgres Jira\");",
                 "let source = provider.source(\"issue_worklogs_view\");",
                 "// Declare your fields (do not remove this comment line)",
                 "const fields = [",
@@ -147,7 +147,7 @@
             "source": {
                 "name": "issue_worklogs_view",
                 "provider": {
-                    "name": "Jira",
+                    "name": "Postgres Jira",
                     "type": "redshift"
                 }
             },
@@ -157,7 +157,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Jira\");",
+                "let provider = cf.provider(\"Postgres Jira\");",
                 "let source = provider.source(\"issue_worklogs_view\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"time_spent_hours\", \"sum\").hideFunction();",
@@ -235,7 +235,7 @@
             "source": {
                 "name": "issue_worklogs_view",
                 "provider": {
-                    "name": "Jira",
+                    "name": "Postgres Jira",
                     "type": "redshift"
                 }
             },
@@ -245,7 +245,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Jira\");",
+                "let provider = cf.provider(\"Postgres Jira\");",
                 "let source = provider.source(\"issue_worklogs_view\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"time_spent_hours\", \"sum\").hideFunction();",
@@ -316,7 +316,7 @@
             "source": {
                 "name": "issue_worklogs_view",
                 "provider": {
-                    "name": "Jira",
+                    "name": "Postgres Jira",
                     "type": "redshift"
                 }
             },
@@ -326,7 +326,7 @@
                 "// filters, use staticFilters() or your code could be overwritten.",
                 "//",
                 "/* Configuration code for this widget */",
-                "let provider = cf.provider(\"Jira\");",
+                "let provider = cf.provider(\"Postgres Jira\");",
                 "let source = provider.source(\"issue_worklogs_view\");",
                 "// Define metrics",
                 "let metric0 = cf.Metric(\"time_spent_hours\", \"sum\").hideFunction();",
@@ -427,7 +427,7 @@
     },
     "hideIM": false,
     "metadata": {
-        "Jira": [
+        "Postgres Jira": [
             "let _META_ = {",
             "    \"issue_worklogs_view\": {",
             "        \"tz\": \"local\",",
@@ -472,7 +472,7 @@
         ]
     },
     "customQueries": {
-        "Jira": [
+        "Postgres Jira": [
             {
                 "name": "issue_worklogs_view",
                 "query": "--Type your query here\nSELECT\n  worklogs.author->>'active'                               AS author_active,\n  worklogs.author->'avatarUrls'->>'32x32'                  AS author_avatar,\n  worklogs.author->>'displayName'                          AS author_name,\n  worklogs.author->>'emailAddress'                         AS email_address,\n  worklogs.comment\n          ->'content'->0\n          ->'content'->0\n          ->>'text'                                     AS comment,\n  'https://${JIRA_DOMAIN}/issues/' || issues.key    AS issue_url,\n  worklogs.started,\n  worklogs.created,\n  worklogs.updated,\n  worklogs.\"timeSpent\"                                     AS time_spent,\n  worklogs.\"timeSpentSeconds\"  / 3600.0                   AS time_spent_hours\nFROM jira.issue_worklogs AS worklogs\nLEFT JOIN jira.issues      AS issues\n  ON worklogs.\"issueId\" = issues.id",
@@ -482,7 +482,7 @@
     }
 }||||[
     {
-        "name": "Jira",
+        "name": "Postgres Jira",
         "url": "http://localhost:3001",
         "redirectOnSameTab": true,
         "active": true,
