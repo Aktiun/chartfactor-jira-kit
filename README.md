@@ -93,8 +93,10 @@ Use BigQuery when you need governance and for larger data volumes. To set up the
 Follow the steps below to set up BigQuery as the data warehouse for Jira data:
 
 a. Nagivate to the folder where the [chartfactor-jira-kit](https://github.com/Aktiun/chartfactor-jira-kit.git) repo was cloned as described in previous sections.
-a. Update the `.env` file to provide the BigQuery variables. The BigQuery variable names start with "BQ".
-b. Execute the command below in your terminal window. 
+
+b. Update the `.env` file to provide the BigQuery variables. The BigQuery variable names start with "BQ".
+
+c. Execute the command below in your terminal window. 
 
 ```commandline
 airbyte-jira-bigquery.sh
@@ -117,7 +119,7 @@ Same as when using Postgres, you should now be able to use your Studio applicati
 To uninstall the connector components, follow the steps below:
 
 1. Nagivate to the folder where the [chartfactor-jira-kit](https://github.com/Aktiun/chartfactor-jira-kit.git) repo was cloned as described in previous sections.
-2. Uninstall Airbyte following this [instructions](https://docs.airbyte.com/platform/using-airbyte/getting-started/oss-quickstart#uninstall-airbyte).
+2. Uninstall Airbyte following these [instructions](https://docs.airbyte.com/platform/using-airbyte/getting-started/oss-quickstart#uninstall-airbyte).
 3. Stop and remove the running Postgres container with the command below.
 
 ```commandline
