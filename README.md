@@ -7,7 +7,7 @@ This repository allows you to analyze JIRA tickets and worklogs using ChartFacto
 This connector includes two options for the data warehouse: 
 
 * Postgres: Lower onboarding barrier since it is included as a docker compose service. Consider using this data engine as a destination for small data volumes (e.g. less than 10GB) or for testing purposes.
-* BigQuery: Recommended for larger data volumes and for full governance. You can easily switch to this option after proving value with the Postgres option.
+* BigQuery: Recommended for larger data volumes and for full governance. You can easily switch to BigQuery after proving the value of the solution using the Postgres option.
 
 # Pre-requisites
 
