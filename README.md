@@ -17,7 +17,7 @@ You need to have Docker Desktop on your machine.
 
 ## 1. Setting up abctl 
 
-abctl is Airbyte's command-line tool for deploying and managing Airbyte. Airbyte is an open-source data integration platform that helps teams move data from various sources into data warehouses. 
+abctl is Airbyte's command-line tool for deploying and managing Airbyte. Airbyte is an open-source data integration platform that moves data from various sources into data warehouses. 
 
 If you are using a Mac, use Homebrew to install Airbyte's abctl.
 
