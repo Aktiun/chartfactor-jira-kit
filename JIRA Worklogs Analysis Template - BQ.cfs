@@ -73,6 +73,7 @@
                 "    { field: \"issue_url\", type: \"url\" },",
                 "])",
                 "    .set(\"sizeColumnsToFit\", true)",
+                "    .set(\"sort\", [{ \"started\": \"desc\" }])",
                 "    .limit(100)",
                 "    .set(\"columnsWidth\", [",
                 "    { \"author_avatar\": 80 },",

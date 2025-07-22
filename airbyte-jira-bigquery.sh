@@ -265,6 +265,7 @@ max_retries=96   # e.g. 96×5s = 8 minutes max wait
 interval=5       # seconds
 
 for ((i=1; i<=max_retries; i++)); do
+  # TODO: Needs to check in BQ, not PG
   exists_worklogs=$(
     docker compose exec -T db psql -U "$PG_USER" -d "$PG_DB" -tAc \
       "SELECT 1 FROM information_schema.tables 
