@@ -49,7 +49,7 @@ token_response=$(curl -s -X POST http://localhost:8000/api/v1/applications/token
 accessToken=$(jq -r .access_token <<<"$token_response")
 
 # Verify
-echo "Got token: $accessToken"
+# echo "Got Airbyte token: $accessToken"
 
 # Obtain workspace id
 workspaceId=$(

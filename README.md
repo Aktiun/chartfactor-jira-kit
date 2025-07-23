@@ -59,7 +59,7 @@ c. Copy the `.env.example` file to `.env` and fill in the JIRA variables. No nee
 d. Execute the command below in your terminal window. Please make sure ports 8000 and 5433 are available in your local computer. 
 
 ```commandline
-airbyte-jira-postgres.sh
+./airbyte-jira-postgres.sh
 ```
 
 Note that the Airbyte installation itself may take up to 30 minutes depending on your internet connection. When it completes, your Airbyte instance opens in your web browser at http://localhost:8000. To obtain Airbyte's default credentials and set up your own password, follow these [instructions](https://docs.airbyte.com/platform/using-airbyte/getting-started/oss-quickstart#part-4-set-up-authentication).
@@ -97,7 +97,7 @@ b. Update the `.env` file to provide the BigQuery variables. The BigQuery variab
 c. Execute the command below in your terminal window. 
 
 ```commandline
-airbyte-jira-bigquery.sh
+./airbyte-jira-bigquery.sh
 ```
     
 After the script completes, open [ChartFactor Studio](https://chartfactor.com/studio) and use the "Import" function located in the top-right corner of the Studio home page, to import the `JIRA Worklogs Analysis - BQ.cfs` file.
