@@ -119,23 +119,17 @@ Same as when using Postgres, you should now be able to use your Studio applicati
 To uninstall the connector components, follow the steps below:
 
 1. Nagivate to the folder where the [chartfactor-jira-kit](https://github.com/Aktiun/chartfactor-jira-kit.git) repo was cloned as described in previous sections.
-2. Uninstall Airbyte following these [instructions](https://docs.airbyte.com/platform/using-airbyte/getting-started/oss-quickstart#uninstall-airbyte).
-3. Stop and remove the running Postgres container with the command below.
-
-```commandline
-docker compose down
-```
-
-If you would like to remove all Postgres persisted data, run the commands below.
-
-```commandline
-docker compose down -v
-rm -rf ./postgres.db
-```
+2. Uninstall Airbyte using the commands below.
 
 ```commandline
 abctl local uninstall --persisted
 rm -rf ~/.airbyte/abctl
+```
+3. Uninstall the Postgres container and remove its data with the command below.
+
+```commandline
+docker compose down -v
+rm -rf ./postgres.db
 ```
 
 4. To remove your Google BigQuery dataset, use the GCP [Delete datasets](https://cloud.google.com/bigquery/docs/managing-datasets#delete-datasets) documentation.
