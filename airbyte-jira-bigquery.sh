@@ -23,7 +23,7 @@ fi
 
 
 # Deploy Airbyte locally (only needs Docker up & running)
-abctl local install
+abctl local install --values ./values.yaml
 
 # Get the generated client-id/secret
 creds=$(abctl local credentials)
