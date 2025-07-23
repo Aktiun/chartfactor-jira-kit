@@ -123,17 +123,19 @@ To uninstall the connector components, follow the steps below:
 3. Stop and remove the running Postgres container with the command below.
 
 ```commandline
-docker-compose down
+docker compose down
 ```
 
 If you would like to remove all Postgres persisted data, run the commands below.
 
 ```commandline
-docker-compose down -v
+docker compose down -v
+rm -rf ./postgres.db
 ```
 
 ```commandline
-rm -rf ./postgres.db
+abctl local uninstall --persisted
+rm -rf ~/.airbyte/abctl
 ```
 
 4. To remove your Google BigQuery dataset, use the GCP [Delete datasets](https://cloud.google.com/bigquery/docs/managing-datasets#delete-datasets) documentation.
