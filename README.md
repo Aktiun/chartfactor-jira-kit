@@ -11,7 +11,10 @@ This connector includes two options for the data warehouse:
 
 # Pre-requisites
 
-You need to have Docker Desktop on your machine. 
+You need to have the following in your machine:
+
+* Docker Desktop installed
+* Ports `8000` and `5433` available
 
 # Steps
 
@@ -28,11 +31,6 @@ b. Run the following commands after you install Homebrew.
 ```commandline
 brew tap airbytehq/tap
 brew install abctl
-```
-
-c. Keep abctl up to date with Homebrew, too.
-
-```commandline
 brew upgrade abctl
 ```
 
