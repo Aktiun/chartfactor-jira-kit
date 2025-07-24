@@ -79,7 +79,7 @@ b. Open the browser at http://localhost:8000, enter an email, organization, and 
 
 You can now user Airbyte's administration console to review the newly created connection and update its periodic update configuration if needed. Out-of-the-box, the connection is configured to update every 24 hours. 
 
-## 3. Visualize using ChartFactor Studio
+## 4. Visualize using ChartFactor Studio
 
 Open [ChartFactor Studio](https://chartfactor.com/studio) and use the "Import" function located in the top-right corner of the Studio home page, to import the `JIRA Worklogs Analysis - PG.cfs` file. Then, select the imported application to open it.
 
