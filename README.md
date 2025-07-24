@@ -38,16 +38,17 @@ Please refer to Airbyte's [Quickstart documentation - Install abctl](https://doc
 
 ## 2. Run the connection setup script - Postgres
 
-This script performs the following actions:
+This script automates the end-to-end setup for syncing Jira data into ChartFactor Studio:
 
-* Deploys Airbyte locally.
-* Starts Postgres and the Postgres-REST API
-* Creates the Airbyte source, destination, and connection configurations to populate the Postgres "jira" schema with Jira issues and worklogs.
-* Prepares the "JIRA Worklogs Analysis - PG.cfs" file that you can import into ChartFactor Studio. This file contains the visualization configurations.
+1. Deploys Airbyte in a local Docker environment.
+
+2. Configures Airbyte by creating source, destination, and connection definitions to stream Jira issues and worklogs into the “jira” schema of a Dockerized PostgreSQL instance.
+
+3. Prepares the ChartFactor import by generating the “JIRA Worklogs Analysis – PG.cfs” file, which contains all the visualization settings ready for use in ChartFactor Studio.
 
 To run the script, follow the steps below:
 
-a. Pull the [chartfactor-jira-kit](https://github.com/Aktiun/chartfactor-jira-kit.git) repo using the command below.
+a. Clone the [chartfactor-jira-kit](https://github.com/Aktiun/chartfactor-jira-kit.git) repo using the command below.
 
 ```commandline
 git clone https://github.com/Aktiun/chartfactor-jira-kit.git
