@@ -55,7 +55,15 @@ git clone https://github.com/Aktiun/chartfactor-jira-kit.git
 ```
 b. Nagivate to the folder where the project was cloned.
 
+```commandline
+cd chartfactor-jira-kit
+```
+
 c. Copy the `.env.example` file to `.env` and fill in the JIRA variables. No need to fill-in the BigQuery variables.
+
+```commandline
+cp .env.example .env
+```
 
 d. Execute the command below in your terminal window. Please make sure ports 8000 and 5433 are available in your local computer. 
 
@@ -63,7 +71,7 @@ d. Execute the command below in your terminal window. Please make sure ports 800
 ./airbyte-jira-postgres.sh
 ```
 
-Note that the Airbyte installation itself may take up to 30 minutes depending on your internet connection. When it completes, your Airbyte instance opens in your web browser at http://localhost:8000. To obtain Airbyte's default credentials and set up your own password, follow these [instructions](https://docs.airbyte.com/platform/using-airbyte/getting-started/oss-quickstart#part-4-set-up-authentication).
+Note that the Airbyte installation itself may take up to 30 minutes depending on your internet connection. When it completes, your Airbyte instance opens in your web browser at http://localhost:8000. The next section covers how to obtain Airbyte's password for your local instance.
 
 ## 3. Airbyte Admin Setup
 
