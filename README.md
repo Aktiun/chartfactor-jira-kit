@@ -65,6 +65,20 @@ d. Execute the command below in your terminal window. Please make sure ports 800
 
 Note that the Airbyte installation itself may take up to 30 minutes depending on your internet connection. When it completes, your Airbyte instance opens in your web browser at http://localhost:8000. To obtain Airbyte's default credentials and set up your own password, follow these [instructions](https://docs.airbyte.com/platform/using-airbyte/getting-started/oss-quickstart#part-4-set-up-authentication).
 
+## 3. Airbyte Admin Setup
+
+Now that the script is finished, let’s log-in into our Airbyte install to look into the connection we created and review its periodic update configuration. Steps below:
+
+a. Obtain the password of your local airbyte install.
+
+```commandline
+abctl local credentials
+```
+
+b. Open the browser at http://localhost:8000, enter an email, organization, and paste the password obtained in the previous step.
+
+You can now user Airbyte's administration console to review the newly created connection and update its periodic update configuration if needed. Out-of-the-box, the connection is configured to update every 24 hours. 
+
 ## 3. Visualize using ChartFactor Studio
 
 Open [ChartFactor Studio](https://chartfactor.com/studio) and use the "Import" function located in the top-right corner of the Studio home page, to import the `JIRA Worklogs Analysis - PG.cfs` file. Then, select the imported application to open it.
