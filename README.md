@@ -31,7 +31,6 @@ b. Run the following commands after you install Homebrew.
 ```commandline
 brew tap airbytehq/tap
 brew install abctl
-brew upgrade abctl
 ```
 
 Please refer to Airbyte's [Quickstart documentation - Install abctl](https://docs.airbyte.com/platform/using-airbyte/getting-started/oss-quickstart#part-2-install-abctl) to install abctl if you are using Linux or Windows.
