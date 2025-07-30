@@ -172,42 +172,31 @@ destId=$(jq -r .destinationId <<<"$bq_resp")
 # Creating the Connection
 #
 
-# 1. Discover the *full* catalog
-full_catalog=$(
+# 1. Select only the streams we are using for the demo
+sync_catalog=$(
   curl -s -X POST http://localhost:8000/api/v1/sources/discover_schema \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer $accessToken" \
-    -d "{\"sourceId\":\"$sourceId\"}"
-)
-
-# 2. Select only the streams we are using for the demo
-sync_catalog=$(
-  jq -c '
-    .catalog.streams
-    # 1) grab only the five streams you care about
-    | map(
-        select(
-          .stream.name == "issue_fields"   or
-          .stream.name == "issue_worklogs" or
-          .stream.name == "issues"         or
-          .stream.name == "projects"       or
+    -d "{\"sourceId\":\"$sourceId\"}" \
+  | jq -c '
+      .catalog.streams
+      | map(select(
+          .stream.name == "issue_fields"    or
+          .stream.name == "issue_worklogs"  or
+          .stream.name == "issues"          or
+          .stream.name == "projects"        or
           .stream.name == "users"
+        ))
+      | map(
+          .stream.jsonSchema |= walk(if type=="object" then del(.description) else . end)
+          | .config.selected  = true
+          | .config.suggested = true
         )
-      )
-    # 2) for each, strip all descriptions and enable the stream
-    | map(
-        # recursively remove any "description" field
-        .stream.jsonSchema |= walk(if type == "object" then del(.description) else . end) |
-        # mark this stream as selected and suggested
-        .config.selected  = true |
-        .config.suggested = true
-      )
-    # 3) wrap back into { streams: [...] }
-    | { streams: . }
-  ' <<<"$full_catalog"
+      | { streams: . }
+    '
 )
 
-# 3. Create the connection
+# 2. Create the connection
 create_resp=$(
   curl -s -X POST http://localhost:8000/api/v1/connections/create \
     -H "Content-Type: application/json" \

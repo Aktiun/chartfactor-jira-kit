@@ -1,7 +1,10 @@
 venv/
 .env
 .DS_Store
+.cache
 postgres.db
 bigquery.db
 JIRA Worklogs Analysis - *.cfs
 bigquery-private-key*.json
+*.ipynb
+*.py
