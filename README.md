@@ -2,10 +2,7 @@
 
 This repository allows you to analyze JIRA tickets and worklogs using ChartFactor. If you would like to visualize the time your team is logging into their JIRA tickets without having to spend hundreds of dollars per month in Tempo licensing fees, then you should read on.
 
-[![4-min video walkthrough](https://img.youtube.com/vi/Clf5Rw2drhY/hqdefault.jpg)](https://www.youtube.com/watch?v=Clf5Rw2drhY&t=2s)
-
-![JIRA Worklogs App](https://github.com/Aktiun/chartfactor-jira-kit/blob/main/JIRA%20App.gif)
-
+[![4-min video walkthrough](https://img.youtube.com/vi/Clf5Rw2drhY/hqdefault.jpg)](https://www.youtube.com/watch?v=Clf5Rw2drhY)
 
 This connector includes two options for the data warehouse: 
 
@@ -91,6 +88,8 @@ You can now user Airbyte's administration console to review the newly created co
 
 ## 4. Visualize using ChartFactor Studio
 
+![JIRA Worklogs App](https://github.com/Aktiun/chartfactor-jira-kit/blob/main/JIRA%20App.gif)
+
 Open [ChartFactor Studio](https://chartfactor.com/studio) and use the "Import" function located in the top-right corner of the Studio home page, to import the `JIRA Worklogs Analysis - PG.cfs` file. Then, select the imported application to open it.
 
 You should now be able to use your Studio application to:
@@ -102,7 +101,6 @@ You should now be able to use your Studio application to:
 ✔ Reset filters by selecting "Remove All" in the Interaction Manager section at the top right. 
 
 ✔ And if you have any questions on additional functionality, please reach out using our [Community Forum](https://community.chartfactor.com/).
-
 
 # Using Google BigQuery instead of Postgres
 
