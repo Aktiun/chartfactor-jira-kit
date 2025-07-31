@@ -494,6 +494,6 @@
         "enableCache": true,
         "cacheTimeout": "5h",
         "id": "2ca28b38-a6fe-4523-9805-1529b4ce60e6",
-        "autoRefreshToken": false
+        "autoRefreshToken": true
     }
 ]
