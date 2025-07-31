@@ -4,7 +4,7 @@ This repository allows you to analyze JIRA tickets and worklogs using ChartFacto
 
 **4-min video walkthrough**
 
-[![4-min video walkthrough](https://img.youtube.com/vi/Clf5Rw2drhY/hqdefault.jpg)](https://www.youtube.com/watch?v=Clf5Rw2drhY)
+[![4-min video walkthrough](./video-thumbnail.png)](https://www.youtube.com/watch?v=Clf5Rw2drhY)
 
 This connector includes two options for the data warehouse: 
 
