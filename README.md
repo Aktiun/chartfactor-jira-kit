@@ -2,7 +2,10 @@
 
 This repository allows you to analyze JIRA tickets and worklogs using ChartFactor. If you would like to visualize the time your team is logging into their JIRA tickets without having to spend hundreds of dollars per month in Tempo licensing fees, then you should read on.
 
+[![4-min video walkthrough](https://img.youtube.com/vi/Clf5Rw2drhY/hqdefault.jpg)](https://www.youtube.com/watch?v=Clf5Rw2drhY&t=2s)
+
 ![JIRA Worklogs App](https://github.com/Aktiun/chartfactor-jira-kit/blob/main/JIRA%20App.gif)
+
 
 This connector includes two options for the data warehouse: 
 
